@@ -1,0 +1,39 @@
+{
+  "version": "Clinical5_integer_20260914_v1",
+  "outcome": "Pre-bronchodilator airflow limitation (FEV1/FVC <0.70)",
+  "population": "Adults aged 40 years or older without a prior COPD diagnosis",
+  "score_range": [0, 21],
+  "primary_cutoff": 3,
+  "risk_model": {
+    "intercept": -4.9031303382268,
+    "slope": 0.393767915695901,
+    "equation": "1 / (1 + exp(-(-4.9031303382268 + 0.393767915695901 * score)))"
+  },
+  "items": {
+    "age_years": [
+      {"min": 40, "max_exclusive": 45, "points": 0},
+      {"min": 45, "max_exclusive": 50, "points": 1},
+      {"min": 50, "max_exclusive": 55, "points": 2},
+      {"min": 55, "max_exclusive": 60, "points": 3},
+      {"min": 60, "max_exclusive": 65, "points": 4},
+      {"min": 65, "max_exclusive": 70, "points": 5},
+      {"min": 70, "max_exclusive": 75, "points": 6},
+      {"min": 75, "max_exclusive": null, "points": 7}
+    ],
+    "sex": {"female": 0, "male": 2},
+    "bmi_kg_m2": [
+      {"min": null, "max_exclusive": 18.5, "points": 3},
+      {"min": 18.5, "max_exclusive": 24, "points": 1},
+      {"min": 24, "max_exclusive": 28, "points": 0},
+      {"min": 28, "max_exclusive": null, "points": 1}
+    ],
+    "pack_years": [
+      {"min_exclusive": null, "max_inclusive": 0, "points": 0},
+      {"min_exclusive": 0, "max_inclusive": 10, "points": 1},
+      {"min_exclusive": 10, "max_inclusive": 20, "points": 2},
+      {"min_exclusive": 20, "max_inclusive": 40, "points": 2},
+      {"min_exclusive": 40, "max_inclusive": null, "points": 3}
+    ],
+    "history_of_asthma": {"no": 0, "yes": 6}
+  }
+}

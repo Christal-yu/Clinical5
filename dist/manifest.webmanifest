@@ -1,0 +1,11 @@
+{
+  "name": "Clinical5 气流受限筛查评分",
+  "short_name": "Clinical5",
+  "description": "A browser-local Clinical5 integer score calculator for pre-bronchodilator airflow limitation screening.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fa",
+  "theme_color": "#17324d",
+  "icons": [{"src": "./assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}]
+}

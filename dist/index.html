@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17324d">
+  <meta name="description" content="Clinical5 气流受限筛查整数评分工具。数据仅在浏览器本地计算。">
+  <title>Clinical5 气流受限筛查评分</title>
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#calculator" data-i18n="skip">跳到计算器</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./" aria-label="Clinical5 home">
+        <img src="./assets/icon.svg" alt="" width="42" height="42">
+        <span><strong>Clinical5</strong><small data-i18n="brandSubtitle">气流受限筛查评分</small></span>
+      </a>
+      <div class="header-actions">
+        <span class="version">v1 · 2026-09-14</span>
+        <div class="language-switch" aria-label="Language">
+          <button type="button" data-lang="zh" aria-pressed="true">中文</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow" data-i18n="eyebrow">研究用途 · 浏览器本地计算</p>
+        <h1 id="page-title" data-i18n="title">Clinical5 气流受限筛查评分</h1>
+        <p class="hero-copy" data-i18n="intro">用于既往未诊断慢阻肺、年龄 ≥40 岁成人的初步筛查。总分 ≥3 分时建议接受肺功能检查。</p>
+        <div class="privacy-chip"><span aria-hidden="true">✓</span><span data-i18n="privacy">输入信息不会上传或保存</span></div>
+      </div>
+      <aside class="scope-card" aria-label="Tool scope">
+        <p><strong data-i18n="targetLabel">目标结局</strong><span data-i18n="targetText">支气管舒张前气流受限（FEV₁/FVC &lt;0.70）</span></p>
+        <p><strong data-i18n="notDiagnosisLabel">重要说明</strong><span data-i18n="notDiagnosisText">筛查结果不是慢阻肺诊断。</span></p>
+      </aside>
+    </section>
+
+    <section class="workspace" id="calculator">
+      <form id="score-form" class="calculator-card" novalidate>
+        <div class="section-heading">
+          <span>01</span>
+          <div><h2 data-i18n="eligibilityTitle">确认适用人群</h2><p data-i18n="eligibilityHelp">本工具仅适用于年龄 ≥40 岁且既往未诊断慢阻肺的人群。</p></div>
+        </div>
+
+        <fieldset>
+          <legend data-i18n="priorCopd">是否曾被医生诊断为慢阻肺？</legend>
+          <div class="segmented">
+            <label><input type="radio" name="priorCopd" value="no" required><span data-i18n="no">否</span></label>
+            <label><input type="radio" name="priorCopd" value="yes"><span data-i18n="yes">是</span></label>
+          </div>
+        </fieldset>
+
+        <div class="divider"></div>
+        <div class="section-heading">
+          <span>02</span>
+          <div><h2 data-i18n="itemsTitle">填写 5 项评分信息</h2><p data-i18n="itemsHelp">请使用当前或最近一次可靠测量值。</p></div>
+        </div>
+
+        <div class="field-grid">
+          <label class="field">
+            <span data-i18n="age">年龄（岁）</span>
+            <input id="age" name="age" type="number" min="40" max="120" step="1" inputmode="numeric" required data-i18n-placeholder="agePlaceholder" placeholder="例如：58">
+            <small data-i18n="ageHelp">年龄 ≥75 岁均计 7 分。</small>
+          </label>
+          <fieldset class="field">
+            <legend data-i18n="sex">生物学性别</legend>
+            <div class="segmented">
+              <label><input type="radio" name="sex" value="female" required><span data-i18n="female">女性</span></label>
+              <label><input type="radio" name="sex" value="male"><span data-i18n="male">男性</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <section class="subcard" aria-labelledby="bmi-heading">
+          <div class="subcard-head">
+            <div><h3 id="bmi-heading" data-i18n="bmiTitle">体质指数（BMI）</h3><p data-i18n="bmiHelp">推荐使用实测身高和体重自动计算。</p></div>
+            <div class="mini-tabs" role="group" aria-label="BMI input mode">
+              <label><input type="radio" name="bmiMode" value="auto" checked><span data-i18n="autoCalculate">自动计算</span></label>
+              <label><input type="radio" name="bmiMode" value="direct"><span data-i18n="directInput">直接输入</span></label>
+            </div>
+          </div>
+          <div id="bmi-auto" class="field-grid">
+            <label class="field"><span data-i18n="height">身高（cm）</span><input id="height" type="number" min="100" max="250" step="0.1" inputmode="decimal" data-i18n-placeholder="heightPlaceholder" placeholder="例如：168"></label>
+            <label class="field"><span data-i18n="weight">体重（kg）</span><input id="weight" type="number" min="20" max="400" step="0.1" inputmode="decimal" data-i18n-placeholder="weightPlaceholder" placeholder="例如：65"></label>
+          </div>
+          <label id="bmi-direct-wrap" class="field hidden"><span data-i18n="bmiDirect">BMI（kg/m²）</span><input id="bmi-direct" type="number" min="10" max="100" step="0.1" inputmode="decimal" placeholder="24.0"></label>
+          <output id="bmi-preview" class="calculated-value" aria-live="polite"></output>
+        </section>
+
+        <section class="subcard" aria-labelledby="smoking-heading">
+          <div class="subcard-head">
+            <div><h3 id="smoking-heading" data-i18n="smokingTitle">累积吸烟暴露（包年）</h3><p data-i18n="smokingHelp">包年 =（每日支数 ÷ 20）× 吸烟年数；不同时期分别计算后相加。</p></div>
+            <div class="mini-tabs" role="group" aria-label="Smoking input mode">
+              <label><input type="radio" name="smokingMode" value="periods" checked><span data-i18n="calculate">计算</span></label>
+              <label><input type="radio" name="smokingMode" value="direct"><span data-i18n="directInput">直接输入</span></label>
+            </div>
+          </div>
+          <div id="periods-wrap">
+            <div id="smoking-periods"></div>
+            <button id="add-period" class="text-button" type="button"><span aria-hidden="true">＋</span><span data-i18n="addPeriod">添加另一吸烟时期</span></button>
+          </div>
+          <label id="pack-direct-wrap" class="field hidden"><span data-i18n="packYears">总包年</span><input id="pack-direct" type="number" min="0" max="500" step="0.1" inputmode="decimal" placeholder="0"></label>
+          <output id="pack-preview" class="calculated-value" aria-live="polite"></output>
+        </section>
+
+        <fieldset class="field asthma-field">
+          <legend data-i18n="asthma">是否有哮喘病史？</legend>
+          <div class="segmented">
+            <label><input type="radio" name="asthma" value="no" required><span data-i18n="no">否</span></label>
+            <label><input type="radio" name="asthma" value="yes"><span data-i18n="yes">是</span></label>
+          </div>
+        </fieldset>
+
+        <div id="form-error" class="form-error" role="alert" hidden></div>
+        <div class="form-actions">
+          <button class="primary-button" type="submit" data-i18n="calculateResult">计算筛查结果</button>
+          <button id="reset" class="secondary-button" type="reset" data-i18n="reset">重新填写</button>
+        </div>
+      </form>
+
+      <aside id="result-card" class="result-card" aria-live="polite">
+        <div id="result-empty">
+          <div class="empty-mark" aria-hidden="true">5</div>
+          <h2 data-i18n="resultReady">结果将在这里显示</h2>
+          <p data-i18n="resultReadyHelp">完成左侧 5 项信息后，工具将显示总分、各项得分和筛查建议。</p>
+        </div>
+        <div id="result-content" hidden>
+          <p id="result-kicker" class="result-kicker"></p>
+          <div class="score-display"><strong id="score-value">0</strong><span data-i18n="outOf21">/ 21 分</span></div>
+          <div class="cutoff-rule"><span data-i18n="primaryCutoff">主要筛查阈值</span><strong>≥3</strong></div>
+          <h2 id="result-title"></h2>
+          <p id="result-advice" class="result-advice"></p>
+          <div id="breakdown" class="breakdown"></div>
+          <details class="risk-details">
+            <summary data-i18n="riskSummary">查看开发队列估计概率</summary>
+            <div><strong id="risk-value"></strong><p data-i18n="riskCaution">该概率由开发队列的总分映射公式计算，仅作为补充信息；不能替代临床评估，也不能跨人群直接解释。</p></div>
+          </details>
+        </div>
+        <div id="result-ineligible" hidden>
+          <p class="result-kicker" data-i18n="outsideScope">超出工具适用范围</p>
+          <h2 data-i18n="priorDiagnosisTitle">既往已诊断慢阻肺者不应使用本筛查评分</h2>
+          <p data-i18n="priorDiagnosisAdvice">请按临床诊疗与随访方案接受评估；本工具不会给出分数。</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="evidence-title">
+      <div class="section-heading"><span>03</span><div><h2 id="evidence-title" data-i18n="evidenceTitle">如何解释结果</h2><p data-i18n="evidenceIntro">阈值的目的，是在减少部分不必要检查的同时，优先保持较高敏感度。</p></div></div>
+      <div class="evidence-grid">
+        <article><strong>≥3</strong><h3 data-i18n="positiveLabel">筛查阳性</h3><p data-i18n="positiveExplain">建议接受肺功能检查。阳性并不等于确诊慢阻肺。</p></article>
+        <article><strong>&lt;3</strong><h3 data-i18n="negativeLabel">筛查阴性</h3><p data-i18n="negativeExplain">不能排除气流受限。若有持续呼吸道症状或临床疑虑，仍需进一步评估。</p></article>
+        <article class="validation-card"><strong>91.8%</strong><h3 data-i18n="validationLabel">时间验证敏感度</h3><p data-i18n="validationExplain">在 6,510 人的独立时间验证队列中，特异度 33.3%，每 1,000 人预计避免 320.9 次肺功能检查。</p></article>
+      </div>
+    </section>
+
+    <section class="resources">
+      <div><p class="eyebrow" data-i18n="resourcesEyebrow">可复核材料</p><h2 data-i18n="resourcesTitle">冻结规则与评分卡</h2><p data-i18n="resourcesText">网页计算逻辑与 Clinical5_integer_20260914_v1 完全对应，可下载评分卡或机器可读规则进行核对。</p></div>
+      <div class="resource-actions">
+        <a class="secondary-button" href="./documents/Clinical5_scorecard.pdf" download data-i18n="downloadCard">下载评分卡 PDF</a>
+        <a class="secondary-button" href="./data/score-spec.json" download data-i18n="downloadSpec">下载 JSON 规则</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Clinical5</strong> · <span data-i18n="footerVersion">规则版本 Clinical5_integer_20260914_v1</span></p>
+    <p data-i18n="footerDisclaimer">仅供研究与筛查流程辅助，不用于自我诊断、急症判断或替代专业医疗建议。</p>
+  </footer>
+
+  <template id="period-template">
+    <div class="period-row">
+      <span class="period-index"></span>
+      <label class="field"><span class="cig-label"></span><input class="cigarettes" type="number" min="0" max="200" step="0.1" inputmode="decimal" placeholder="0"></label>
+      <label class="field"><span class="years-label"></span><input class="years" type="number" min="0" max="100" step="0.1" inputmode="decimal" placeholder="0"></label>
+      <button class="remove-period" type="button" aria-label="Remove period">×</button>
+    </div>
+  </template>
+</body>
+</html>

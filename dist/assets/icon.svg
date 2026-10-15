@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Clinical5">
+  <rect width="512" height="512" rx="112" fill="#17324d"/>
+  <path d="M248 110v164c-22-63-55-106-91-115-50-13-80 46-75 112 5 73 50 119 112 119 40 0 62-25 62-70V110h-8Z" fill="#599fce"/>
+  <path d="M264 110v164c22-63 55-106 91-115 50-13 80 46 75 112-5 73-50 119-112 119-40 0-62-25-62-70V110h8Z" fill="#e9b34f"/>
+  <path d="M256 103v224" stroke="#fff" stroke-width="16" stroke-linecap="round"/>
+</svg>
