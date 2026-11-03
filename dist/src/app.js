@@ -4,11 +4,11 @@ import {
   calculateBmi,
   calculatePackYears,
   calculateScore,
-} from "./scoring.js";
+} from "./scoring.js?v=20261022";
 
 const translations = {
   zh: {
-    skip: "跳到计算器", brandSubtitle: "气流受限筛查评分", eyebrow: "研究用途 · 浏览器本地计算",
+    skip: "跳到计算器", brandSubtitle: "气流受限筛查评分", versionPill: "规则 · 2026-10-22", eyebrow: "研究用途 · 浏览器本地计算",
     title: "Clinical5 气流受限筛查评分", intro: "用于既往未诊断慢阻肺、年龄 ≥40 岁成人的初步筛查。总分 ≥3 分时建议接受肺功能检查。",
     privacy: "输入信息不会上传或保存", targetLabel: "目标结局", targetText: "支气管舒张前气流受限（FEV₁/FVC <0.70）",
     notDiagnosisLabel: "重要说明", notDiagnosisText: "筛查结果不是慢阻肺诊断。", eligibilityTitle: "确认适用人群",
@@ -40,7 +40,7 @@ const translations = {
     devRisk: "开发队列估计概率：{value}", removePeriod: "删除该时期"
   },
   en: {
-    skip: "Skip to calculator", brandSubtitle: "Airflow limitation screening score", eyebrow: "Research use · calculated locally",
+    skip: "Skip to calculator", brandSubtitle: "Airflow limitation screening score", versionPill: "Rule · 2026-10-22", eyebrow: "Research use · calculated locally",
     title: "Clinical5 airflow limitation screening score", intro: "For preliminary screening in adults aged ≥40 years without a prior COPD diagnosis. Spirometry is recommended for a total score ≥3.",
     privacy: "Your entries are not uploaded or stored", targetLabel: "Target outcome", targetText: "Pre-bronchodilator airflow limitation (FEV₁/FVC <0.70)",
     notDiagnosisLabel: "Important", notDiagnosisText: "A screening result is not a COPD diagnosis.", eligibilityTitle: "Confirm eligibility",
@@ -262,4 +262,6 @@ $("#add-period").addEventListener("click", () => addSmokingPeriod());
 addSmokingPeriod();
 setLanguage(language);
 console.info(`Clinical5 ${MODEL_VERSION}; primary cutoff ≥${PRIMARY_CUTOFF}`);
-if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("./sw.js");
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" }).then(registration => registration.update());
+}
