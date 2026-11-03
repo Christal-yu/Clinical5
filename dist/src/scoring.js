@@ -1,8 +1,8 @@
-export const MODEL_VERSION = "Clinical5_integer_20260914_v1";
+export const MODEL_VERSION = "Clinical5_integer_current_20261022_v1";
 export const PRIMARY_CUTOFF = 3;
 export const MAX_SCORE = 21;
-export const RISK_INTERCEPT = -4.9031303382268;
-export const RISK_SLOPE = 0.393767915695901;
+export const RISK_INTERCEPT = -4.90351083168235;
+export const RISK_SLOPE = 0.393817063929628;
 
 export function agePoints(age) {
   const value = Number(age);

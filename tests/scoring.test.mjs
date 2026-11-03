@@ -7,7 +7,7 @@ import {
 } from "../dist/src/scoring.js";
 
 test("frozen version and cutoff are the final rule", () => {
-  assert.equal(MODEL_VERSION, "Clinical5_integer_20260914_v1");
+  assert.equal(MODEL_VERSION, "Clinical5_integer_current_20261022_v1");
   assert.equal(PRIMARY_CUTOFF, 3);
   assert.equal(MAX_SCORE, 21);
 });
@@ -72,8 +72,8 @@ test("all 640 category combinations stay within the frozen range", () => {
 });
 
 test("risk mapping uses the frozen logistic equation", () => {
-  assert.ok(Math.abs(predictedRisk(0) - 0.00736860972551582) < 1e-14);
-  const expected21 = 1 / (1 + Math.exp(-(-4.9031303382268 + 0.393767915695901 * 21)));
+  assert.ok(Math.abs(predictedRisk(0) - 0.007365827198765953) < 1e-14);
+  const expected21 = 1 / (1 + Math.exp(-(-4.90351083168235 + 0.393817063929628 * 21)));
   assert.ok(Math.abs(predictedRisk(21) - expected21) < 1e-14);
 });
 

@@ -4,12 +4,14 @@ A dependency-free, bilingual, browser-local calculator for the frozen Clinical5 
 
 ## Frozen specification
 
-- Version: `Clinical5_integer_20260914_v1`
+- Version: `Clinical5_integer_current_20261022_v1`
 - Population: adults aged ≥40 years without a prior COPD diagnosis
 - Target: pre-bronchodilator airflow limitation (`FEV1/FVC <0.70`)
 - Total score: 0–21
 - Primary screening cutoff: ≥3
 - A positive screen recommends spirometry; it is not a COPD diagnosis.
+
+Current source cohorts: Phase II development, n=7,745 (426 events); independent Phase III temporal validation, n=5,264 (242 events). At the frozen ≥3 cutoff, temporal-validation sensitivity was 91.7%, specificity 33.5%, and 323.1 spirometry examinations were avoided per 1,000 screened.
 
 The executable rule is in `dist/src/scoring.js`; the machine-readable publication rule is in `dist/data/score-spec.json`.
 

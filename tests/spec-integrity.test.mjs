@@ -13,6 +13,14 @@ test("machine-readable specification matches executable constants", () => {
   assert.equal(spec.risk_model.slope, RISK_SLOPE);
 });
 
+test("published cohort metadata matches the current restored analysis", () => {
+  assert.deepEqual(spec.source_cohorts.development, {name: "Phase II", participants: 7745, events: 426});
+  assert.deepEqual(spec.source_cohorts.temporal_validation, {name: "Phase III", participants: 5264, events: 242});
+  assert.equal(spec.temporal_validation_at_primary_cutoff.sensitivity, 0.9173553719008265);
+  assert.equal(spec.temporal_validation_at_primary_cutoff.specificity, 0.33472720031859815);
+  assert.equal(spec.temporal_validation_at_primary_cutoff.spirometry_avoided_per_1000, 323.13829787234044);
+});
+
 test("published category points match the frozen score", () => {
   assert.deepEqual(spec.items.sex, {female: 0, male: 2});
   assert.deepEqual(spec.items.history_of_asthma, {no: 0, yes: 6});

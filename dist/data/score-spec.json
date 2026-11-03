@@ -1,13 +1,23 @@
 {
-  "version": "Clinical5_integer_20260914_v1",
+  "version": "Clinical5_integer_current_20261022_v1",
   "outcome": "Pre-bronchodilator airflow limitation (FEV1/FVC <0.70)",
   "population": "Adults aged 40 years or older without a prior COPD diagnosis",
   "score_range": [0, 21],
   "primary_cutoff": 3,
+  "pack_years_cap": 120,
+  "source_cohorts": {
+    "development": {"name": "Phase II", "participants": 7745, "events": 426},
+    "temporal_validation": {"name": "Phase III", "participants": 5264, "events": 242}
+  },
+  "temporal_validation_at_primary_cutoff": {
+    "sensitivity": 0.9173553719008265,
+    "specificity": 0.33472720031859815,
+    "spirometry_avoided_per_1000": 323.13829787234044
+  },
   "risk_model": {
-    "intercept": -4.9031303382268,
-    "slope": 0.393767915695901,
-    "equation": "1 / (1 + exp(-(-4.9031303382268 + 0.393767915695901 * score)))"
+    "intercept": -4.90351083168235,
+    "slope": 0.393817063929628,
+    "equation": "1 / (1 + exp(-(-4.90351083168235 + 0.393817063929628 * score)))"
   },
   "items": {
     "age_years": [

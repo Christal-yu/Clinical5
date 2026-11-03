@@ -1,4 +1,4 @@
-const CACHE = "clinical5-20260914-v1";
+const CACHE = "clinical5-20261022-v1";
 const CORE = [
   "./",
   "./index.html",
